@@ -1,0 +1,20 @@
+/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+src/seed.ts(11,5): error TS2322: Type '{ email: string; password: string; }' is not assignable to type '(Without<AdminCreateInput, AdminUncheckedCreateInput> & AdminUncheckedCreateInput) | (Without<...> & AdminCreateInput)'.
+  Type '{ email: string; password: string; }' is not assignable to type 'Without<AdminUncheckedCreateInput, AdminCreateInput> & AdminCreateInput'.
+    Property 'name' is missing in type '{ email: string; password: string; }' but required in type 'AdminCreateInput'.
+
+    at createTSError (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1321:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/genius/Desktop/development/Projects/Promptbaz/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1125:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:965:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12) {
+  diagnosticCodes: [ 2322 ]
+}
