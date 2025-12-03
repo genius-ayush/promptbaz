@@ -12,7 +12,7 @@ function Hero() {
                 "relative flex flex-col items-center justify-center text-center w-full border-b z-20",
                 "min-h-[80vh] sm:min-h-[90vh] md:min-h-screen",
                 "[background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--primary)_100%)]",
-                "rounded-b-xl px-4 sm:px-6 md:px-8 pb-32"
+                "rounded-b-xl px-4 sm:px-6 md:px-8 pb-32 mb-72"
             )}
         >
             {/* Content */}
@@ -35,38 +35,39 @@ function Hero() {
                 <h1
                     className={cn(
                         "font-semibold leading-tight mx-auto max-w-4xl",
-                        "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                        "text-3xl sm:text-4xl md:text-5xl lg:text-5xl"
                     )}
                 >
-                    Enter the Arena{" "}
-                    <br className="hidden sm:block" /> Where Code Meets Competition
+                    Stop Searching for Prompts.{" "}
+                    <br className="hidden sm:block" /> Start Creating Images.
                 </h1>
 
                 {/* Subheading */}
                 <p
                     className={cn(
                         "text-gray-400 mt-5 sm:mt-6 mx-auto max-w-xl sm:max-w-2xl",
-                        "text-base sm:text-lg md:text-xl"
+                        "text-base sm:text-lg md:text-lg"
                     )}
                 >
-                    AI-powered contest platform built for problem setters and participants
-                    to create, compete, and track results in real time.
+                    Discover curated AI prompts with real sample outputs. Copy a prompt, upload your reference image, and create stunning visuals in seconds.
                 </p>
 
                 {/* CTA Button */}
-                <Button className="mt-8 sm:mt-10 px-5 sm:px-7 py-2 sm:py-3 text-base sm:text-lg text-white pointer-events-auto">
+                <Button className="mt-8 sm:mt-10 px-5 sm:px-7 py-2 sm:py-3 text-base sm:text-lg text-white pointer-events-auto md:mb-48">
                     Get Started
                 </Button>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 w-full px-4 sm:px-6 md:px-8 max-w-6xl mx-auto">
+            <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 w-full px-4 sm:px-6 md:px-8 max-w-9xl mx-auto">
+            <div className="fade-container">
                 <Video />
+               </div> 
             </div>
 
             {/* Decorative Borders */}
             <div className="absolute inset-y-0 left-3 sm:left-5 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80" />
             <div className="absolute inset-y-0 right-3 sm:right-5 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80" />
-            <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80" />
+            {/* <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80" /> */}
         </section>
     );
 }

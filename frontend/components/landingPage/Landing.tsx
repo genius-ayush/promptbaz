@@ -8,7 +8,7 @@ import CTA from './CTA'
 
 function Landing() {
     return (
-        <div className='relative mx-auto my-10 flex max-w-7/8 mt-0 flex-col items-center justify-center'>
+        <div className='relative mx-auto my-10 flex max-w-6/8 mt-0 flex-col items-center justify-center'>
 
             <Header />
             <Hero />
