@@ -14,8 +14,8 @@ function Landing() {
             <Hero />
             <Features />
             <Designs />
-            <CTA />
             <FAQs />
+            <CTA />
             <Footer />
 
 

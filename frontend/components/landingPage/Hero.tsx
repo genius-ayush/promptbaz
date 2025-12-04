@@ -46,7 +46,7 @@ function Hero() {
                 <p
                     className={cn(
                         "text-gray-400 mt-5 sm:mt-6 mx-auto max-w-xl sm:max-w-2xl",
-                        "text-base sm:text-lg md:text-lg"
+                        "text-base sm:text-lg md:text-base"
                     )}
                 >
                     Discover curated AI prompts with real sample outputs. Copy a prompt, upload your reference image, and create stunning visuals in seconds.

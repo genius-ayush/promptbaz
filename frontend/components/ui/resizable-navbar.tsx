@@ -105,7 +105,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-l bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-xl bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className,
       )}
@@ -235,10 +235,10 @@ export const MobileNavToggle = ({
 export const NavbarLogo = () => {
   return (
     <Link href={"/landing"} className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg dark:bg-white bg-black">
-            <MessageSquareDashed className="h-4 w-4 text-primary-foreground dark:text-black" />
-          </div>
-          <span className="text-xl font-bold">PromptBaz</span>
+          {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg dark:bg-white bg-black"> */}
+            <MessageSquareDashed className="h-4 w-4 text-primary dark:text-primary" />
+          {/* </div> */}
+          <span className="text-xl font-semibold">PromptBaz</span>
         </Link>
   );
 };
