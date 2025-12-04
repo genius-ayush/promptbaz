@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import ThemeButton from "../ui/theme-button";
+import Link from "next/link";
 
 export default function Header() {
   const navItems = [
@@ -40,7 +41,7 @@ export default function Header() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             {/* <NavbarButton variant="secondary">Sign In</NavbarButton> */}
-            <NavbarButton variant="primary" className="bg-primary text-white">Get Started</NavbarButton>
+            <Link href="/gallery"><NavbarButton variant="primary" className="bg-primary text-white">Get Started</NavbarButton></Link>
             <ThemeButton/>
           </div>
         </NavBody>

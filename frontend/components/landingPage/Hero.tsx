@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Video } from "./Video";
+import Link from "next/link";
 
 function Hero() {
     return (
@@ -53,9 +54,9 @@ function Hero() {
                 </p>
 
                 {/* CTA Button */}
-                <Button className="mt-8 sm:mt-10 px-5 sm:px-7 py-2 sm:py-3 text-base sm:text-lg text-white pointer-events-auto md:mb-48">
+                <Link href="/gallery"><Button className="mt-8 sm:mt-10 px-5 sm:px-7 py-2 sm:py-3 text-base sm:text-lg text-white pointer-events-auto md:mb-48">
                     Get Started
-                </Button>
+                </Button></Link>
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 w-full px-4 sm:px-6 md:px-8 max-w-9xl mx-auto">

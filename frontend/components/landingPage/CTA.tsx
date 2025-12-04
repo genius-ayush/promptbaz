@@ -46,7 +46,7 @@ export default function CTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
         >
-            <h2 className="mx-auto max-w-4xl text-xl font-bold tracking-tight text-primary-foreground sm:text-7xl">
+            <h2 className="mx-auto max-w-2xl text-xl font-bold tracking-tight text-primary-foreground sm:text-5xl">
               Visualize.
               {/* <br /> */}
               <span className="opacity-90">Create.</span> <span className="text-white">Inspire.</span>
@@ -59,7 +59,7 @@ export default function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto mt-8 max-w-2xl text-lg text-primary-foreground/80 sm:text-xl"
+            className="mx-auto mt-8 max-w-xl text-lg text-primary-foreground/80 sm:text-xl"
         >
           Join thousands of creators building the future with PromptBaz. 
           Unlock the full potential of your imagination today.
