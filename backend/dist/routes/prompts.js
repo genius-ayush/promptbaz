@@ -14,7 +14,7 @@ const auth_1 = require("../middewares/auth");
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const router = (0, express_1.Router)();
-router.get("/", auth_1.verifyAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const prompts = yield prisma.prompt.findMany();
         return res.status(200).json({ message: "Prompts Fetched", prompts });
@@ -56,7 +56,7 @@ router.post("/", auth_1.verifyAdmin, (req, res) => __awaiter(void 0, void 0, voi
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }));
-router.get("/:id", auth_1.verifyAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const prompt = yield prisma.prompt.findUnique({

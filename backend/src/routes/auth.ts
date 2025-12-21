@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 const router = Router();
 
 router.post("/signup", async (req, res) => {
-
+    console.log(req.body);
     const { email, password } = req.body;
 
     const admin = await prisma.admin.findUnique({
@@ -18,10 +18,9 @@ router.post("/signup", async (req, res) => {
     if(!admin){
         return res.status(400).json({message : "Invalid Credentials"});
     }
-    console.log(admin.password);
-    console.log(password);
+    
     const match = await bcrypt.compare(password , admin.password);
-    console.log(match);
+    
 
     if(!match){
         return res.status(400).json({message : "Invalid Credentials"});
@@ -29,7 +28,7 @@ router.post("/signup", async (req, res) => {
 
     const token = jwt.sign({email} , "secret");
 
-    console.log(token);
+    
 
     return res.status(200).json({message :"Login Successfull" , token});
 })

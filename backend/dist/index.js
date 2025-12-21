@@ -8,7 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const auth_1 = __importDefault(require("./routes/auth"));
 const prompts_1 = __importDefault(require("./routes/prompts"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = 5000;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/auth", auth_1.default);

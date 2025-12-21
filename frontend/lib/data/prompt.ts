@@ -13,7 +13,8 @@ export interface Prompt {
   id: string;
   title: string;
   promptText: string;
-  sampleImageUrl: string;
+  sampleImageUrl: string;   
+  originalImageUrl?: string;
   modelUsed: string; // e.g., "Midjourney v6", "DALL-E 3"
   steps: string[]; // JSON in DB, parsed as string array here
   aspectRatio: string | null;
@@ -29,7 +30,8 @@ export const MOCK_PROMPTS: Prompt[] = [
     id: "1",
     title: "Neon Cyberpunk City",
     promptText: "A futuristic city street at night, neon lights reflecting on wet pavement, cyberpunk aesthetic, highly detailed, cinematic lighting, 8k resolution, unreal engine 5 render, blue and pink color palette.",
-    sampleImageUrl: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=2070&auto=format&fit=crop",
+    sampleImageUrl: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=2070&auto=format&fit=crop", 
+    originalImageUrl: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop",
     modelUsed: "Midjourney v6",
     steps: ["Set aspect ratio to 16:9", "Use niji style for vibrancy", "Upscale 2x"],
     aspectRatio: "16:9",
@@ -43,6 +45,7 @@ export const MOCK_PROMPTS: Prompt[] = [
     title: "Minimalist Pastel Portrait",
     promptText: "Close up portrait of a woman, soft pastel colors, minimalist background, studio lighting, fashion photography style, sharp focus on eyes, shot on 85mm lens.",
     sampleImageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
+    originalImageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop",
     modelUsed: "Stable Diffusion XL",
     steps: ["Use DPM++ 2M Karras sampler", "CFG Scale 7", "Denoising strength 0.4"],
     aspectRatio: "3:4",

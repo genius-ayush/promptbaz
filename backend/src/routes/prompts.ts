@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const router = Router() ; 
 
-router.get("/" , verifyAdmin ,  async(req , res) => {
+router.get("/"  ,  async(req , res) => {
 
     try{
         const prompts = await prisma.prompt.findMany();
@@ -61,7 +61,7 @@ router.post("/", verifyAdmin, async (req, res) => {
 });
 
 
-router.get("/:id" , verifyAdmin , async(req , res) => {
+router.get("/:id"  , async(req , res) => {
     const {id} = req.params ; 
     try{
         const prompt = await prisma.prompt.findUnique({

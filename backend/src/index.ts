@@ -3,7 +3,7 @@ import cors from 'cors'
 import authRouter from './routes/auth'
 import promptRouter from './routes/prompts'
 const app = express()
-const port = 3000 ; 
+const port = 5000 ; 
 
 app.use(express.json()) ; 
 app.use(cors()) ; 

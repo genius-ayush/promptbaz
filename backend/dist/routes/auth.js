@@ -19,6 +19,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const prisma = new client_1.PrismaClient();
 const router = (0, express_1.Router)();
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     const { email, password } = req.body;
     const admin = yield prisma.admin.findUnique({
         where: {
@@ -28,15 +29,11 @@ router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function*
     if (!admin) {
         return res.status(400).json({ message: "Invalid Credentials" });
     }
-    console.log(admin.password);
-    console.log(password);
     const match = yield bcrypt_1.default.compare(password, admin.password);
-    console.log(match);
     if (!match) {
         return res.status(400).json({ message: "Invalid Credentials" });
     }
     const token = jsonwebtoken_1.default.sign({ email }, "secret");
-    console.log(token);
     return res.status(200).json({ message: "Login Successfull", token });
 }));
 exports.default = router;
