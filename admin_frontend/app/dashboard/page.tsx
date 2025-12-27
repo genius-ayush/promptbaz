@@ -1,7 +1,9 @@
+import Prompts from "@/components/prompts"
+
 const Page = () => {
     return (
         <div>
-            <h1>Dashboard</h1>
+            <Prompts />
         </div>
     )
 }

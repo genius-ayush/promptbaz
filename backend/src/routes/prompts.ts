@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { verifyAdmin } from "../middewares/auth";
 import { PrismaClient } from "@prisma/client";
+import { upload } from "../middewares/upload";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary";
 const prisma = new PrismaClient();
 const router = Router() ; 
 
@@ -15,11 +17,15 @@ router.get("/"  ,  async(req , res) => {
     
 })
 
-router.post("/", verifyAdmin, async (req, res) => {
-  const {
+router.post("/", verifyAdmin, upload.single("image"), async (req, res) => {
+  
+console.log(req.body) ; 
+
+  try {
+
+    const {
     title,
     promptText,
-    sampleImageUrl,
     modelUsed,
     steps,
     aspectRatio,
@@ -28,12 +34,21 @@ router.post("/", verifyAdmin, async (req, res) => {
     tags = [],
   } = req.body;
 
-  try {
+  if (!req.file) {
+        return res.status(400).json({ message: "Image is required" });
+      }
+
+      console.log(req.file) ; 
+
+      const imageUrl = await uploadToCloudinary(req.file.buffer);
+      console.log("reached here") ; 
+      console.log(imageUrl) ; 
+
     const prompt = await prisma.prompt.create({
       data: {
         title,
         promptText,
-        sampleImageUrl,
+        sampleImageUrl : imageUrl,
         modelUsed,
         steps,
         aspectRatio,

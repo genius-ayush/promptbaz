@@ -16,6 +16,7 @@ const express_1 = require("express");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const client_1 = require("@prisma/client");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const auth_1 = require("../middewares/auth");
 const prisma = new client_1.PrismaClient();
 const router = (0, express_1.Router)();
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,4 +37,7 @@ router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function*
     const token = jsonwebtoken_1.default.sign({ email }, "secret");
     return res.status(200).json({ message: "Login Successfull", token });
 }));
+router.get('/me', auth_1.verifyAdmin, (req, res) => {
+    return res.status(200).json({ message: "verified admin", isAdmin: true });
+});
 exports.default = router;

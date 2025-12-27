@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const auth_1 = require("../middewares/auth");
 const client_1 = require("@prisma/client");
+const upload_1 = require("../middewares/upload");
+const uploadToCloudinary_1 = require("../utils/uploadToCloudinary");
 const prisma = new client_1.PrismaClient();
 const router = (0, express_1.Router)();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,14 +25,22 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }));
-router.post("/", auth_1.verifyAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, promptText, sampleImageUrl, modelUsed, steps, aspectRatio, seed, categories = [], tags = [], } = req.body;
+router.post("/", auth_1.verifyAdmin, upload_1.upload.single("image"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     try {
+        const { title, promptText, modelUsed, steps, aspectRatio, seed, categories = [], tags = [], } = req.body;
+        if (!req.file) {
+            return res.status(400).json({ message: "Image is required" });
+        }
+        console.log(req.file);
+        const imageUrl = yield (0, uploadToCloudinary_1.uploadToCloudinary)(req.file.buffer);
+        console.log("reached here");
+        console.log(imageUrl);
         const prompt = yield prisma.prompt.create({
             data: {
                 title,
                 promptText,
-                sampleImageUrl,
+                sampleImageUrl: imageUrl,
                 modelUsed,
                 steps,
                 aspectRatio,

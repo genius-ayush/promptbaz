@@ -47,7 +47,7 @@ export function LoginForm({
           }
           else{
             //@ts-ignore
-            localStorage.setItem("token" , response.data)
+            localStorage.setItem("token" , response.data.token)
             setLoading(false) ; 
             setError("") ; 
             router.push("/dashboard")
