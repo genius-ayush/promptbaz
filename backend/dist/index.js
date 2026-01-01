@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const node_dns_1 = __importDefault(require("node:dns"));
+node_dns_1.default.setDefaultResultOrder('ipv4first');
 const auth_1 = __importDefault(require("./routes/auth"));
 const prompts_1 = __importDefault(require("./routes/prompts"));
 const app = (0, express_1.default)();

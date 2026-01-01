@@ -1,15 +1,16 @@
 import cloudinary from "../config/cloudinary";
 
-export const uploadToCloudinary = (
+export const uploadToCloudinary = async (
   buffer: Buffer,
+  mimetype: string,
   folder = "prompts"
 ): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader
-      .upload_stream({ folder }, (error, result) => {
-        if (error || !result) return reject(error);
-        resolve(result.secure_url);
-      })
-      .end(buffer);
+  const b64 = Buffer.from(buffer).toString("base64");
+  const dataURI = "data:" + mimetype + ";base64," + b64;
+
+  const result = await cloudinary.uploader.upload(dataURI, {
+    folder: folder,
   });
+
+  return result.secure_url;
 };

@@ -33,7 +33,7 @@ router.post("/", auth_1.verifyAdmin, upload_1.upload.single("image"), (req, res)
             return res.status(400).json({ message: "Image is required" });
         }
         console.log(req.file);
-        const imageUrl = yield (0, uploadToCloudinary_1.uploadToCloudinary)(req.file.buffer);
+        const imageUrl = yield (0, uploadToCloudinary_1.uploadToCloudinary)(req.file.buffer, req.file.mimetype);
         console.log("reached here");
         console.log(imageUrl);
         const prompt = yield prisma.prompt.create({
