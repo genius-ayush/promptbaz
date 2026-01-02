@@ -8,7 +8,7 @@ export function verifyAdmin(req :Request , res : Response , next : NextFunction)
     console.log(token) ; 
     if(!token){
         return res.status(401).json({message : "Unauthorized"}); 
-    }
+    } 
 
     try {
         const decodedToken = jwt.verify(token , "secret");

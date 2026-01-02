@@ -22,11 +22,13 @@ const router = (0, express_1.Router)();
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     const { email, password } = req.body;
+    console.log("before prisma");
     const admin = yield prisma.admin.findUnique({
         where: {
             email
         }
     });
+    console.log("after prisma");
     if (!admin) {
         return res.status(400).json({ message: "Invalid Credentials" });
     }

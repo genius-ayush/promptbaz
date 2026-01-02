@@ -26,43 +26,44 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 router.post("/", auth_1.verifyAdmin, upload_1.upload.single("image"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     try {
-        const { title, promptText, modelUsed, steps, aspectRatio, seed, categories = [], tags = [], } = req.body;
+        const { title, promptText, modelUsed, steps, aspectRatio, seed, categories = "[]", tags = "[]", } = req.body;
         if (!req.file) {
             return res.status(400).json({ message: "Image is required" });
         }
-        console.log(req.file);
+        const parsedCategories = JSON.parse(categories);
+        const parsedTags = JSON.parse(tags);
+        const parsedSteps = JSON.parse(steps);
+        console.log("➡️ Uploading image to Cloudinary...");
         const imageUrl = yield (0, uploadToCloudinary_1.uploadToCloudinary)(req.file.buffer, req.file.mimetype);
-        console.log("reached here");
-        console.log(imageUrl);
+        console.log("✅ Image uploaded:", imageUrl);
         const prompt = yield prisma.prompt.create({
             data: {
                 title,
                 promptText,
                 sampleImageUrl: imageUrl,
                 modelUsed,
-                steps,
+                steps: parsedSteps,
                 aspectRatio,
-                seed,
+                seed: Number(seed),
                 categories: {
-                    connectOrCreate: categories.map((cat) => ({
+                    connectOrCreate: parsedCategories.map((cat) => ({
                         where: { name: cat },
                         create: { name: cat },
                     })),
                 },
                 tags: {
-                    connectOrCreate: tags.map((tag) => ({
+                    connectOrCreate: parsedTags.map((tag) => ({
                         where: { name: tag },
                         create: { name: tag },
                     })),
                 },
             },
         });
-        return res.status(200).json({ message: "Prompt Created", prompt });
+        return res.status(201).json({ message: "Prompt Created", prompt });
     }
     catch (error) {
-        console.log(error);
+        console.error("❌ Prompt creation failed:", error);
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }));

@@ -18,11 +18,7 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", verifyAdmin, upload.single("image"), async (req, res) => {
-
-  console.log(req.body);
-
   try {
-
     const {
       title,
       promptText,
@@ -30,19 +26,26 @@ router.post("/", verifyAdmin, upload.single("image"), async (req, res) => {
       steps,
       aspectRatio,
       seed,
-      categories = [],
-      tags = [],
+      categories = "[]",
+      tags = "[]",
     } = req.body;
 
     if (!req.file) {
       return res.status(400).json({ message: "Image is required" });
     }
 
-    console.log(req.file);
+    const parsedCategories = JSON.parse(categories);
+    const parsedTags = JSON.parse(tags);
+    const parsedSteps = JSON.parse(steps);
 
-    const imageUrl = await uploadToCloudinary(req.file.buffer, req.file.mimetype);
-    console.log("reached here");
-    console.log(imageUrl);
+    console.log("➡️ Uploading image to Cloudinary...");
+
+    const imageUrl = await uploadToCloudinary(
+      req.file.buffer,
+      req.file.mimetype
+    );
+
+    console.log("✅ Image uploaded:", imageUrl);
 
     const prompt = await prisma.prompt.create({
       data: {
@@ -50,17 +53,17 @@ router.post("/", verifyAdmin, upload.single("image"), async (req, res) => {
         promptText,
         sampleImageUrl: imageUrl,
         modelUsed,
-        steps,
+        steps: parsedSteps,
         aspectRatio,
-        seed,
+        seed: Number(seed),
         categories: {
-          connectOrCreate: categories.map((cat: string) => ({
+          connectOrCreate: parsedCategories.map((cat: string) => ({
             where: { name: cat },
             create: { name: cat },
           })),
         },
         tags: {
-          connectOrCreate: tags.map((tag: string) => ({
+          connectOrCreate: parsedTags.map((tag: string) => ({
             where: { name: tag },
             create: { name: tag },
           })),
@@ -68,12 +71,13 @@ router.post("/", verifyAdmin, upload.single("image"), async (req, res) => {
       },
     });
 
-    return res.status(200).json({ message: "Prompt Created", prompt });
+    return res.status(201).json({ message: "Prompt Created", prompt });
   } catch (error) {
-    console.log(error);
+    console.error("❌ Prompt creation failed:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 
 router.get("/:id", async (req, res) => {

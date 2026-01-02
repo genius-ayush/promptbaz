@@ -9,12 +9,13 @@ const router = Router();
 router.post("/signup", async (req, res) => {
     console.log(req.body);
     const { email, password } = req.body;
-
+    console.log("before prisma") ; 
     const admin = await prisma.admin.findUnique({
         where: {
             email
         }
     })
+    console.log("after prisma") ; 
 
     if(!admin){
         return res.status(400).json({message : "Invalid Credentials"});
