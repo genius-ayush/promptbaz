@@ -23,21 +23,20 @@ const GalleryPage = () => {
 
      useEffect(() => {
     const fetchPrompts = async () => {
-      const { data } = await axios.get('http://localhost:5000/prompts');
-      console.log(data.prompts) ; 
-
+      const { data } = await axios.get('http://localhost:5000/prompts'); 
+      //@ts-ignore
       setPrompts(data.prompts);
     };
     fetchPrompts();
   }, []);
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans">
+        <div className="min-h-screen bg-background text-foreground font-mono">
       {/* Header / Filter Bar */}
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <h1 className="text-xl font-bold tracking-tight">PromptBaz</h1>
           
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <div className="relative hidden sm:block">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <input 
@@ -49,7 +48,7 @@ const GalleryPage = () => {
             <button className="inline-flex items-center justify-center rounded-lg border border-input h-9 w-9 hover:bg-accent hover:text-accent-foreground transition-colors">
               <Filter className="h-4 w-4" />
             </button>
-          </div>
+          </div> */}
         </div>
       </header>
 

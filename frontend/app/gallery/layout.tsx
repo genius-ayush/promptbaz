@@ -4,7 +4,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     
       <main className="flex-1 p-4">
   
-  <div className="flex items-center justify-center ">
+  <div className=" ">
     {children}
   </div>
 </main>
