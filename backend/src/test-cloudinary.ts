@@ -1,30 +1,23 @@
 import 'dotenv/config';
-import { v2 as cloudinary } from 'cloudinary';
+import { uploadToCloudinary } from './utils/uploadToCloudinary';
 import dns from 'node:dns';
 
+// Ensure IPv4 is used first
 dns.setDefaultResultOrder('ipv4first');
 
-console.log('Loading Cloudinary Config...');
-console.log('API Key Present:', !!process.env.CLOUDINARY_API_KEY);
-console.log('Cloud Name:', process.env.CLOUDINARY_CLOUD_NAME);
-
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-    api_key: process.env.CLOUDINARY_API_KEY!,
-    api_secret: process.env.CLOUDINARY_API_SECRET!,
-});
+console.log('Testing uploadToCloudinary...');
 
 const testUpload = async () => {
     try {
-        console.log('Attempting upload...');
-        const dataURI = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-        const result = await cloudinary.uploader.upload(dataURI, {
-            folder: 'test_connectivity',
-            timeout: 60000 // 60s timeout
-        });
-        console.log('Upload success:', result.secure_url);
+        const base64Image = "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+        const buffer = Buffer.from(base64Image, 'base64');
+        const mimetype = 'image/gif';
+
+        console.log('Starting upload...');
+        const url = await uploadToCloudinary(buffer, mimetype, 'test_connectivity');
+        console.log('✅ Upload success:', url);
     } catch (error) {
-        console.error('Upload failed full error:', error);
+        console.error('❌ Upload failed:', error);
     }
 };
 

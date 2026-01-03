@@ -10,6 +10,7 @@ const uploadToCloudinary = (buffer, mimetype, folder = "prompts") => {
         const stream = cloudinary_1.default.uploader.upload_stream({
             folder,
             resource_type: "image",
+            timeout: 120000 // 2 minutes
         }, (error, result) => {
             if (error) {
                 console.error("❌ Cloudinary upload error:", error);

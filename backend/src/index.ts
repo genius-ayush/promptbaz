@@ -2,8 +2,17 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import dns from 'node:dns';
+import https from 'https';
 
 dns.setDefaultResultOrder('ipv4first');
+
+const agent = new https.Agent({
+  family: 4, // Force IPv4
+  keepAlive: true,
+  keepAliveMsecs: 3000,
+});
+
+https.globalAgent = agent;
 
 import authRouter from './routes/auth'
 import promptRouter from './routes/prompts'

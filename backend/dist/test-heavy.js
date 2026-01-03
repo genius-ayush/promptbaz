@@ -15,20 +15,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
 const uploadToCloudinary_1 = require("./utils/uploadToCloudinary");
 const node_dns_1 = __importDefault(require("node:dns"));
-// Ensure IPv4 is used first
+const https_1 = __importDefault(require("https"));
 node_dns_1.default.setDefaultResultOrder('ipv4first');
-console.log('Testing uploadToCloudinary...');
-const testUpload = () => __awaiter(void 0, void 0, void 0, function* () {
+https_1.default.globalAgent.options.keepAlive = true;
+const testHeavyUpload = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const base64Image = "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-        const buffer = Buffer.from(base64Image, 'base64');
-        const mimetype = 'image/gif';
-        console.log('Starting upload...');
+        console.log('Generating 1MB buffer...');
+        const buffer = Buffer.alloc(1024 * 1024, 'a'); // 1MB of 'a's
+        const mimetype = 'image/png'; // generic
+        console.log('Starting heavy upload...');
         const url = yield (0, uploadToCloudinary_1.uploadToCloudinary)(buffer, mimetype, 'test_connectivity');
-        console.log('✅ Upload success:', url);
+        console.log('✅ Heavy upload success:', url);
     }
     catch (error) {
-        console.error('❌ Upload failed:', error);
+        console.error('❌ Heavy upload failed:', error);
     }
 });
-testUpload();
+testHeavyUpload();

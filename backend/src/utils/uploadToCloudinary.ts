@@ -10,6 +10,7 @@ export const uploadToCloudinary = (
       {
         folder,
         resource_type: "image",
+        timeout: 120000 // 2 minutes
       },
       (error, result) => {
         if (error) {
