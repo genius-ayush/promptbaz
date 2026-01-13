@@ -30,7 +30,7 @@ export default function PromptDetailPage() {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/prompts/${id}`
+          `https://promptbaz-backend.vercel.app/prompts/${id}`
         );
         console.log(res.data) ; 
         //@ts-ignore

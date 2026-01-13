@@ -23,7 +23,7 @@ const GalleryPage = () => {
 
      useEffect(() => {
     const fetchPrompts = async () => {
-      const { data } = await axios.get('http://localhost:5000/prompts'); 
+      const { data } = await axios.get('https://promptbaz-backend.vercel.app/prompts'); 
       //@ts-ignore
       setPrompts(data.prompts);
     };

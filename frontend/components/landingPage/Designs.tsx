@@ -82,7 +82,7 @@ export default function DesignsSection() {
   useEffect(() => {
     const fetchPrompts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/prompts");
+        const res = await fetch("https://promptbaz-backend.vercel.app/prompts");
         const data = await res.json();
         setDesigns(data.prompts);
       } catch (err) {
@@ -128,7 +128,7 @@ export default function DesignsSection() {
 
         {/* CTA */}
         <div className="mt-6 flex justify-center px-4">
-          <a href="http://localhost:3000/gallery">
+          <a href="/gallery">
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
