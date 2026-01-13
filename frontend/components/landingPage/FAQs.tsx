@@ -72,7 +72,7 @@ export default function FAQs() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="relative w-full overflow-hidden bg-background border-b">
+    <section className="relative w-full overflow-hidden bg-background border-b" id="FAQ">
         
       {/* Background Decor - Minimalist Gradient Blob */}
       {/* <div className="pointer-events-none absolute right-0 top-0 -z-10 translate-x-1/3 -translate-y-1/3 opacity-20">

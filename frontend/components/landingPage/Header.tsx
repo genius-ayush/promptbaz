@@ -16,13 +16,15 @@ import Link from "next/link";
 
 export default function Header() {
   const navItems = [
+
+    {
+      name: "Home",
+      link: "#home",
+    },
+
     {
       name: "Features",
       link: "#features",
-    },
-    {
-      name: "Contests",
-      link: "#contests",
     },
     {
       name: "FAQ",
@@ -76,15 +78,15 @@ export default function Header() {
                 variant="primary"
                 className="w-full"
               >
-                Login
+                Get Started
               </NavbarButton>
-              <NavbarButton
+              {/* <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
                 Book a call
-              </NavbarButton>
+              </NavbarButton> */}
             </div>
           </MobileNavMenu>
         </MobileNav>

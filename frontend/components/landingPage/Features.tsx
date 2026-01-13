@@ -180,7 +180,7 @@ const features = [
 
 export default function Features() {
     return (
-        <div className="mt-30 w-full flex justify-center border-b">
+        <div className="mt-30 w-full flex justify-center border-b" id="features">
             {/* Main Container */}
             <div className="flex w-full max-w-full ml-8 mr-8 border-l border-r border-t bg-background">
                 

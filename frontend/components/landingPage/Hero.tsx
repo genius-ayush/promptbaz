@@ -8,7 +8,7 @@ import Link from "next/link";
 
 function Hero() {
     return (
-        <section
+        <section id="home"
             className={cn(
                 "relative flex flex-col items-center justify-center text-center w-full border-b z-20",
                 "min-h-[80vh] sm:min-h-[90vh] md:min-h-screen",
